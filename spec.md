@@ -1,11 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add a hamburger menu button to the right side of the app header that toggles a slide-in menu panel.
+**Goal:** Display division results with full decimal precision (up to 10 decimal places) instead of truncating to 2 decimal places.
 
 **Planned changes:**
-- Add a ☰ hamburger icon button on the right side of the header in App.tsx, styled to match the existing dark/neon-green theme
-- Implement toggle logic so clicking the button opens and closes a menu panel (side drawer or dropdown)
-- Menu panel includes placeholder navigation items such as "Calculator" and "History"
+- Update the division result formatting in `CalculatorDisplay.tsx` to show up to 10 decimal places for non-terminating decimals
+- Ensure whole number division results (e.g., 10 ÷ 2 = 5) display without trailing zeros
+- Ensure exact decimals with fewer than 10 digits (e.g., 1 ÷ 4 = 0.25) display without zero-padding
+- Apply the fix to both the live preview and confirmed result displays
+- Ensure history entries saved to the backend reflect the full precision value
 
-**User-visible outcome:** Users see a hamburger menu button on the right of the header; clicking it opens a themed menu panel with placeholder items, and clicking again closes it.
+**User-visible outcome:** When dividing (e.g., 10 ÷ 3), the calculator now shows the full result up to 10 decimal places (3.3333333333) instead of a truncated 2-decimal result (3.33).

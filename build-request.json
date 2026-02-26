@@ -1,40 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Add hamburger menu button to the right side of the header",
-  "projectName": "Study Calculator",
+  "title": "Show full decimal precision for division results",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Add a hamburger menu (☰) icon button on the right-hand side of the app header in App.tsx. The button should be visually styled to match the existing dark theme (neon-green accent, dark background). Clicking the button should toggle a slide-in or dropdown side menu panel. The menu panel can initially be empty or contain placeholder navigation items (e.g., 'Calculator', 'History') as a foundation for future expansion.",
+      "text": "When a division operation produces a non-terminating or long decimal result (e.g., 10 ÷ 3), display the full precision result up to 10 decimal places (e.g., 3.3333333333) instead of truncating to 2 decimal places.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5",
-          "msg-8"
+          "msg-4"
         ],
         "quotes": [
-          "right hand side \"☰\" बटन लगा दो (यही मेन्यू होता है)"
+          "10 ÷ 3\n= 3.33   ❌ (truncate)\n= 3.3333333333 ✅"
         ]
       },
       "acceptanceCriteria": [
-        "A ☰ (hamburger) icon button is visible on the right side of the header bar.",
-        "The button matches the existing dark/neon theme of the app.",
-        "Clicking the button opens a menu panel (side drawer or dropdown).",
-        "Clicking the button again (or a close control) closes the menu panel.",
-        "The menu panel contains at least placeholder items (e.g., 'Calculator', 'History').",
-        "The layout does not break on standard screen sizes."
+        "10 ÷ 3 displays as 3.3333333333 (10 decimal places) in the calculator result area.",
+        "Division results that are whole numbers (e.g., 10 ÷ 2 = 5) are displayed without unnecessary trailing zeros.",
+        "Division results with fewer than 10 significant decimal digits (e.g., 1 ÷ 4 = 0.25) are displayed exactly without padding zeros.",
+        "The fix applies to both the live preview display and the confirmed result display in CalculatorDisplay.tsx.",
+        "History entries saved to the backend also reflect the full precision value.",
+        "Other operations (addition, subtraction, multiplication, power, square root) are unaffected."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui.",
-    "Maintain the existing dark neon theme defined in frontend/src/index.css and tailwind.config.js."
+    "Do not alter immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Do not change the backend data model or Motoko actor signature."
   ],
   "nonGoals": [
-    "Implementing actual navigation or routing between pages.",
-    "Adding new calculator features or scientific mode.",
-    "Backend changes of any kind."
+    "Adding a user-configurable precision setting.",
+    "Changing the display precision for non-division operations.",
+    "Modifying the backend calculation logic."
   ],
   "imageRequirements": {
     "required": [],

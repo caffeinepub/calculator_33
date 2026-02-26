@@ -5,9 +5,11 @@ interface CalculatorDisplayProps {
     result: string;
     isError: boolean;
     isLoading: boolean;
+    /** When true, the result shown is a live auto-calculated preview (not yet confirmed with =) */
+    isAutoPreview?: boolean;
 }
 
-export function CalculatorDisplay({ expression, result, isError, isLoading }: CalculatorDisplayProps) {
+export function CalculatorDisplay({ expression, result, isError, isLoading, isAutoPreview = false }: CalculatorDisplayProps) {
     const displayResult = result || '0';
     const isLong = displayResult.length > 10;
     const isVeryLong = displayResult.length > 15;
@@ -57,27 +59,46 @@ export function CalculatorDisplay({ expression, result, isError, isLoading }: Ca
                         </div>
                     ) : (
                         <span
-                            className={`font-mono font-semibold tracking-tight block leading-none ${
+                            className={`font-mono font-semibold tracking-tight block leading-none transition-all duration-100 ${
                                 isVeryLong ? 'text-2xl' : isLong ? 'text-3xl' : 'text-4xl'
-                            } ${isError ? '' : 'neon-text-glow'}`}
+                            } ${isError ? '' : isAutoPreview ? '' : 'neon-text-glow'}`}
                             style={{
                                 color: isError
                                     ? 'oklch(0.65 0.22 25)'
-                                    : 'oklch(0.92 0.18 142)',
+                                    : isAutoPreview
+                                        ? 'oklch(0.72 0.16 142)'
+                                        : 'oklch(0.92 0.18 142)',
                                 wordBreak: 'break-all',
+                                textShadow: isAutoPreview && !isError
+                                    ? '0 0 8px oklch(0.72 0.16 142 / 0.4)'
+                                    : undefined,
                             }}
                         >
                             {displayResult}
                         </span>
                     )}
                 </div>
+
+                {/* Auto-preview indicator */}
+                {isAutoPreview && !isError && !isLoading && (
+                    <div className="flex justify-end mt-1">
+                        <span
+                            className="font-mono text-xs tracking-widest"
+                            style={{ color: 'oklch(0.45 0.1 142)' }}
+                        >
+                            preview
+                        </span>
+                    </div>
+                )}
             </div>
 
             {/* Bottom accent line */}
             <div
                 className="h-0.5 w-full"
                 style={{
-                    background: 'linear-gradient(90deg, transparent, oklch(0.85 0.22 142 / 0.4), transparent)',
+                    background: isAutoPreview && !isError
+                        ? 'linear-gradient(90deg, transparent, oklch(0.72 0.16 142 / 0.3), transparent)'
+                        : 'linear-gradient(90deg, transparent, oklch(0.85 0.22 142 / 0.4), transparent)',
                 }}
             />
         </div>

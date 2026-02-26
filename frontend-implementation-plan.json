@@ -1,29 +1,29 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add hamburger menu button to the right side of the header",
+  "title": "Show full decimal precision for division results",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Add a hamburger menu icon button on the right side of the header that toggles a slide-in menu panel with placeholder navigation items",
+      "summary": "Display division results with up to 10 decimal places precision instead of truncating to 2 decimal places",
       "acceptanceCriteria": [
-        "A ☰ (hamburger) icon button is visible on the right side of the header bar.",
-        "The button matches the existing dark/neon theme of the app.",
-        "Clicking the button opens a menu panel (side drawer or dropdown).",
-        "Clicking the button again (or a close control) closes the menu panel.",
-        "The menu panel contains at least placeholder items (e.g., 'Calculator', 'History').",
-        "The layout does not break on standard screen sizes."
+        "10 ÷ 3 displays as 3.3333333333 (10 decimal places) in the calculator result area.",
+        "Division results that are whole numbers (e.g., 10 ÷ 2 = 5) are displayed without unnecessary trailing zeros.",
+        "Division results with fewer than 10 significant decimal digits (e.g., 1 ÷ 4 = 0.25) are displayed exactly without padding zeros.",
+        "The fix applies to both the live preview display and the confirmed result display in CalculatorDisplay.tsx.",
+        "History entries saved to the backend also reflect the full precision value.",
+        "Other operations (addition, subtraction, multiplication, power, square root) are unaffected."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/HamburgerMenu.tsx",
-          "operation": "create",
-          "description": "Create a new HamburgerMenu component that renders a ☰ icon button and manages the open/closed state of a slide-in menu panel. The menu panel should slide in from the right side when opened and contain placeholder navigation items ('Calculator', 'History'). Style the button and panel using the existing dark theme with neon-green accents defined in frontend/src/index.css and tailwind.config.js. Include a close button or overlay click handler to dismiss the menu."
+          "path": "frontend/src/components/Calculator.tsx",
+          "operation": "modify",
+          "description": "Update the division result formatting in the evaluateExpression function to display up to 10 decimal places for division operations. Modify the division case in the switch statement to format results using toFixed(10) and then remove trailing zeros. Ensure whole number results display without decimal points and non-repeating decimals display their exact precision without padding."
         },
         {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/components/CalculatorDisplay.tsx",
           "operation": "modify",
-          "description": "Import the new HamburgerMenu component and add it to the header section on the right side, after the existing 'On-Chain Calculator' title and on-chain indicator. Ensure the layout uses flexbox or grid to position the hamburger button on the far right while keeping the existing header content intact. Maintain the dark neon theme styling throughout."
+          "description": "Ensure the display component correctly renders the full precision division results passed from Calculator.tsx in both preview and confirmed states. Verify that the result formatting logic preserves the precision from the parent component without applying additional truncation."
         }
       ]
     }

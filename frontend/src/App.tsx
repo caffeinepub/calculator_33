@@ -5,7 +5,7 @@ import { Heart } from 'lucide-react';
 
 export default function App() {
     const appId = encodeURIComponent(
-        typeof window !== 'undefined' ? window.location.hostname : 'calculator-app'
+        typeof window !== 'undefined' ? window.location.hostname : 'study-calculator-app'
     );
 
     return (
@@ -39,7 +39,7 @@ export default function App() {
                             className="text-base font-semibold tracking-wide"
                             style={{ color: 'oklch(0.9 0 0)' }}
                         >
-                            Calculator
+                            Study Calculator
                         </h1>
                         <p className="text-xs" style={{ color: 'oklch(0.45 0 0)' }}>
                             Basic arithmetic

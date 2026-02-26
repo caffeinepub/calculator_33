@@ -1,11 +1,23 @@
 import React from 'react';
-import { Clock, Trash2 } from 'lucide-react';
+import { Clock } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import type { HistoryEntry } from '@/hooks/useQueries';
 
 interface CalculatorHistoryProps {
-    history: Array<[string, string]>;
+    history: HistoryEntry[];
     isLoading: boolean;
     onSelectResult?: (result: string) => void;
+}
+
+function formatTimestamp(ts: number): string {
+    const date = new Date(ts);
+    return date.toLocaleString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true,
+    });
 }
 
 export function CalculatorHistory({ history, isLoading, onSelectResult }: CalculatorHistoryProps) {
@@ -26,9 +38,14 @@ export function CalculatorHistory({ history, isLoading, onSelectResult }: Calcul
                 }}
             >
                 <Clock className="w-4 h-4" style={{ color: 'oklch(0.85 0.22 142)' }} />
-                <span className="text-sm font-semibold tracking-wider uppercase" style={{ color: 'oklch(0.6 0 0)' }}>
-                    History
-                </span>
+                <div className="flex flex-col">
+                    <span className="text-sm font-semibold tracking-wider uppercase" style={{ color: 'oklch(0.6 0 0)' }}>
+                        History
+                    </span>
+                    <span className="text-xs" style={{ color: 'oklch(0.38 0 0)' }}>
+                        Last 7 days
+                    </span>
+                </div>
                 {history.length > 0 && (
                     <span
                         className="ml-auto text-xs px-2 py-0.5 rounded-full font-mono"
@@ -51,7 +68,7 @@ export function CalculatorHistory({ history, isLoading, onSelectResult }: Calcul
                             {[1, 2, 3].map((i) => (
                                 <div
                                     key={i}
-                                    className="h-12 rounded-lg animate-pulse"
+                                    className="h-14 rounded-lg animate-pulse"
                                     style={{ background: 'oklch(0.2 0 0)' }}
                                 />
                             ))}
@@ -67,12 +84,15 @@ export function CalculatorHistory({ history, isLoading, onSelectResult }: Calcul
                             <p className="text-sm text-center" style={{ color: 'oklch(0.4 0 0)' }}>
                                 No calculations yet
                             </p>
+                            <p className="text-xs text-center" style={{ color: 'oklch(0.32 0 0)' }}>
+                                History syncs when online
+                            </p>
                         </div>
                     ) : (
-                        history.map(([expression, result], idx) => (
+                        history.map((entry, idx) => (
                             <button
                                 key={idx}
-                                onClick={() => onSelectResult?.(result)}
+                                onClick={() => onSelectResult?.(entry.result)}
                                 className="w-full text-right px-3 py-2.5 rounded-lg transition-all duration-150 group"
                                 style={{
                                     background: idx === 0 ? 'oklch(0.2 0.02 142)' : 'oklch(0.19 0 0)',
@@ -89,17 +109,26 @@ export function CalculatorHistory({ history, isLoading, onSelectResult }: Calcul
                                     (e.currentTarget as HTMLElement).style.borderColor = idx === 0 ? 'oklch(0.85 0.22 142 / 0.2)' : 'oklch(0.24 0 0)';
                                 }}
                             >
+                                {/* Timestamp row */}
+                                <div
+                                    className="text-xs font-mono mb-0.5 text-left"
+                                    style={{ color: 'oklch(0.38 0 0)' }}
+                                >
+                                    {formatTimestamp(entry.timestamp)}
+                                </div>
+                                {/* Expression row */}
                                 <div
                                     className="text-xs font-mono mb-0.5 truncate"
                                     style={{ color: 'oklch(0.5 0 0)' }}
                                 >
-                                    {expression}
+                                    {entry.expression}
                                 </div>
+                                {/* Result row */}
                                 <div
                                     className="text-base font-mono font-semibold"
                                     style={{ color: idx === 0 ? 'oklch(0.85 0.22 142)' : 'oklch(0.75 0 0)' }}
                                 >
-                                    = {result}
+                                    = {entry.result}
                                 </div>
                             </button>
                         ))

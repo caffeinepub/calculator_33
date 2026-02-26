@@ -2,11 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-hamburger-menu-icon-button-on-the-right-hand-side-of-the-app-header-in-app-tsx-the-button-should-be-visually-styled-to-match-the-existing-dark-theme-neon-green-accent-dark-background-clicking-the-button-should-toggle-a-slide-in-or-dropdown-side-menu-panel-the-menu-panel-can-initially-be-empty-or-contain-placeholder-navigation-items-e-g-calculator-history-as-a-foundation-for-future-expansion",
-      "featureTitle": "Add a hamburger menu (☰) icon button on the right-hand side of the app header in App.tsx. The button should be visually styled to match the existing dark theme (neon-green accent, dark background). Clicking the button should toggle a slide-in or dropdown side menu panel. The menu panel can initially be empty or contain placeholder navigation items (e.g., 'Calculator', 'History') as a foundation for future expansion.",
+      "featureId": "feature-when-a-division-operation-produces-a-non-terminating-or-long-decimal-result-e-g-10-3-display-the-full-precision-result-up-to-10-decimal-places-e-g-3-3333333333-instead-of-truncating-to-2-decimal-places",
+      "featureTitle": "When a division operation produces a non-terminating or long decimal result (e.g., 10 ÷ 3), display the full precision result up to 10 decimal places (e.g., 3.3333333333) instead of truncating to 2 decimal places.",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/HamburgerMenu.tsx"
+        "frontend/src/components/Calculator.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Delete } from 'lucide-react';
 
-export type ButtonType = 'digit' | 'operator' | 'equals' | 'clear' | 'backspace' | 'decimal' | 'special';
+export type ButtonType = 'digit' | 'operator' | 'equals' | 'clear' | 'backspace' | 'decimal' | 'special' | 'advanced';
 
 export interface KeypadButton {
     label: string | React.ReactNode;
@@ -15,34 +14,58 @@ interface CalculatorKeypadProps {
     isLoading: boolean;
 }
 
+// Row 1: Advanced scientific functions
+// Row 2: (, ), %, ÷
+// Row 3: 7, 8, 9, ×
+// Row 4: 4, 5, 6, −
+// Row 5: 1, 2, 3, +
+// Row 6: C, ±, 0, .
 const BUTTONS: KeypadButton[] = [
-    { label: 'C', value: 'clear', type: 'clear' },
-    { label: '±', value: 'negate', type: 'special' },
-    { label: '%', value: 'percent', type: 'special' },
-    { label: '÷', value: '/', type: 'operator' },
+    // Row 1 – advanced functions
+    { label: 'x²',  value: 'square',     type: 'advanced' },
+    { label: '√x',  value: 'sqrt',       type: 'advanced' },
+    { label: '1/x', value: 'reciprocal', type: 'advanced' },
+    { label: 'xʸ',  value: 'power',      type: 'advanced' },
 
-    { label: '7', value: '7', type: 'digit' },
-    { label: '8', value: '8', type: 'digit' },
-    { label: '9', value: '9', type: 'digit' },
-    { label: '×', value: '*', type: 'operator' },
+    // Row 2 – advanced functions cont.
+    { label: '(',   value: '(',          type: 'advanced' },
+    { label: ')',   value: ')',          type: 'advanced' },
+    { label: '%',   value: 'percent',    type: 'advanced' },
+    { label: '÷',   value: '/',          type: 'operator' },
 
-    { label: '4', value: '4', type: 'digit' },
-    { label: '5', value: '5', type: 'digit' },
-    { label: '6', value: '6', type: 'digit' },
-    { label: '−', value: '-', type: 'operator' },
+    // Row 3
+    { label: '7',   value: '7',          type: 'digit' },
+    { label: '8',   value: '8',          type: 'digit' },
+    { label: '9',   value: '9',          type: 'digit' },
+    { label: '×',   value: '*',          type: 'operator' },
 
-    { label: '1', value: '1', type: 'digit' },
-    { label: '2', value: '2', type: 'digit' },
-    { label: '3', value: '3', type: 'digit' },
-    { label: '+', value: '+', type: 'operator' },
+    // Row 4
+    { label: '4',   value: '4',          type: 'digit' },
+    { label: '5',   value: '5',          type: 'digit' },
+    { label: '6',   value: '6',          type: 'digit' },
+    { label: '−',   value: '-',          type: 'operator' },
 
-    { label: '0', value: '0', type: 'digit', span: 2 },
-    { label: '.', value: '.', type: 'decimal' },
-    { label: '=', value: '=', type: 'equals' },
+    // Row 5
+    { label: '1',   value: '1',          type: 'digit' },
+    { label: '2',   value: '2',          type: 'digit' },
+    { label: '3',   value: '3',          type: 'digit' },
+    { label: '+',   value: '+',          type: 'operator' },
+
+    // Row 6
+    { label: 'C',   value: 'clear',      type: 'clear' },
+    { label: '±',   value: 'negate',     type: 'special' },
+    { label: '0',   value: '0',          type: 'digit' },
+    { label: '.',   value: '.',          type: 'decimal' },
 ];
 
 function getButtonStyle(type: ButtonType): React.CSSProperties {
     switch (type) {
+        case 'advanced':
+            return {
+                background: 'oklch(0.20 0.05 260)',
+                color: 'oklch(0.82 0.18 260)',
+                border: '1px solid oklch(0.82 0.18 260 / 0.3)',
+            };
         case 'operator':
             return {
                 background: 'oklch(0.22 0.06 142)',
@@ -85,6 +108,8 @@ function getButtonStyle(type: ButtonType): React.CSSProperties {
 
 function getHoverClass(type: ButtonType): string {
     switch (type) {
+        case 'advanced':
+            return 'hover:brightness-125 hover:shadow-[0_0_12px_oklch(0.82_0.18_260_/_0.4)]';
         case 'operator':
             return 'hover:brightness-125 hover:shadow-[0_0_12px_oklch(0.85_0.22_142_/_0.35)]';
         case 'equals':
@@ -98,11 +123,15 @@ function getHoverClass(type: ButtonType): string {
 
 export function CalculatorKeypad({ onButton, isLoading }: CalculatorKeypadProps) {
     return (
-        <div className="grid grid-cols-4 gap-2.5">
+        <div className="grid grid-cols-4 gap-2">
             {BUTTONS.map((btn, idx) => {
                 const style = getButtonStyle(btn.type);
                 const hoverClass = getHoverClass(btn.type);
                 const colSpan = btn.span === 2 ? 'col-span-2' : 'col-span-1';
+                // Advanced buttons are slightly shorter to keep the layout compact
+                const heightClass = btn.type === 'advanced' ? 'h-11' : 'h-13';
+                // Advanced buttons use smaller text for multi-char labels
+                const textClass = btn.type === 'advanced' ? 'text-sm' : 'text-xl';
 
                 return (
                     <button
@@ -113,16 +142,19 @@ export function CalculatorKeypad({ onButton, isLoading }: CalculatorKeypadProps)
                             ${colSpan}
                             calc-btn-press
                             ${hoverClass}
-                            h-14 rounded-xl
-                            font-mono font-semibold text-xl
+                            ${heightClass}
+                            rounded-xl
+                            font-mono font-semibold ${textClass}
                             flex items-center justify-center
                             select-none cursor-pointer
                             disabled:opacity-50 disabled:cursor-not-allowed
                             focus:outline-none focus-visible:ring-2 focus-visible:ring-primary
+                            transition-all duration-100
                         `}
                         style={{
                             ...style,
                             boxShadow: '0 3px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+                            minHeight: btn.type === 'advanced' ? '2.75rem' : '3.25rem',
                         }}
                         aria-label={typeof btn.label === 'string' ? btn.label : btn.value}
                     >
