@@ -1,35 +1,40 @@
 {
   "kind": "build_request",
-  "title": "Rename app to Study Calculator",
+  "title": "Add hamburger menu button to the right side of the header",
   "projectName": "Study Calculator",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-4",
-      "text": "Rename the application to 'Study Calculator' — update the branded header title in App.tsx and any other visible instances of the app name (page title in index.html, any footer or metadata references) to display 'Study Calculator'.",
+      "id": "REQ-1",
+      "text": "Add a hamburger menu (☰) icon button on the right-hand side of the app header in App.tsx. The button should be visually styled to match the existing dark theme (neon-green accent, dark background). Clicking the button should toggle a slide-in or dropdown side menu panel. The menu panel can initially be empty or contain placeholder navigation items (e.g., 'Calculator', 'History') as a foundation for future expansion.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-5",
+          "msg-8"
         ],
         "quotes": [
-          "Study Calculator uska name rakh do"
+          "right hand side \"☰\" बटन लगा दो (यही मेन्यू होता है)"
         ]
       },
       "acceptanceCriteria": [
-        "The header in the app displays 'Study Calculator' as the app name.",
-        "The browser tab title (index.html <title>) reads 'Study Calculator'.",
-        "No other instances of a different app name remain visible in the UI."
+        "A ☰ (hamburger) icon button is visible on the right side of the header bar.",
+        "The button matches the existing dark/neon theme of the app.",
+        "Clicking the button opens a menu panel (side drawer or dropdown).",
+        "Clicking the button again (or a close control) closes the menu panel.",
+        "The menu panel contains at least placeholder items (e.g., 'Calculator', 'History').",
+        "The layout does not break on standard screen sizes."
       ]
     }
   ],
   "constraints": [
-    "Do not change any calculator functionality, logic, or visual design — only the app name/branding should be updated."
+    "Do not modify any files under frontend/src/hooks/ or frontend/src/components/ui.",
+    "Maintain the existing dark neon theme defined in frontend/src/index.css and tailwind.config.js."
   ],
   "nonGoals": [
-    "Changing the calculator UI layout or theme.",
-    "Adding new calculator features or operations.",
-    "Modifying backend logic."
+    "Implementing actual navigation or routing between pages.",
+    "Adding new calculator features or scientific mode.",
+    "Backend changes of any kind."
   ],
   "imageRequirements": {
     "required": [],

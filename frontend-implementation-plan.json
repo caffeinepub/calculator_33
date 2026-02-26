@@ -1,26 +1,29 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Rename app to Study Calculator",
+  "title": "Add hamburger menu button to the right side of the header",
   "requirements": [
     {
-      "id": "REQ-4",
-      "summary": "Rename the application to 'Study Calculator' in all visible branding locations",
+      "id": "REQ-1",
+      "summary": "Add a hamburger menu icon button on the right side of the header that toggles a slide-in menu panel with placeholder navigation items",
       "acceptanceCriteria": [
-        "The header in the app displays 'Study Calculator' as the app name.",
-        "The browser tab title (index.html <title>) reads 'Study Calculator'.",
-        "No other instances of a different app name remain visible in the UI."
+        "A ☰ (hamburger) icon button is visible on the right side of the header bar.",
+        "The button matches the existing dark/neon theme of the app.",
+        "Clicking the button opens a menu panel (side drawer or dropdown).",
+        "Clicking the button again (or a close control) closes the menu panel.",
+        "The menu panel contains at least placeholder items (e.g., 'Calculator', 'History').",
+        "The layout does not break on standard screen sizes."
       ],
       "file_operations": [
         {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Update the <title> element to display 'Study Calculator' so the browser tab reflects the new app name."
+          "path": "frontend/src/components/HamburgerMenu.tsx",
+          "operation": "create",
+          "description": "Create a new HamburgerMenu component that renders a ☰ icon button and manages the open/closed state of a slide-in menu panel. The menu panel should slide in from the right side when opened and contain placeholder navigation items ('Calculator', 'History'). Style the button and panel using the existing dark theme with neon-green accents defined in frontend/src/index.css and tailwind.config.js. Include a close button or overlay click handler to dismiss the menu."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update the branded header title text to display 'Study Calculator' instead of the current app name, ensuring the header shows the new branding without changing layout or functionality."
+          "description": "Import the new HamburgerMenu component and add it to the header section on the right side, after the existing 'On-Chain Calculator' title and on-chain indicator. Ensure the layout uses flexbox or grid to position the hamburger button on the far right while keeping the existing header content intact. Maintain the dark neon theme styling throughout."
         }
       ]
     }

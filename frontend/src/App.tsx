@@ -1,5 +1,6 @@
 import React from 'react';
 import { Calculator } from './components/Calculator';
+import { HamburgerMenu } from './components/HamburgerMenu';
 import { Heart } from 'lucide-react';
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
                     background: 'oklch(0.15 0 0)',
                 }}
             >
+                {/* Left: Brand */}
                 <div className="flex items-center gap-3">
                     <div
                         className="w-8 h-8 rounded-lg flex items-center justify-center font-mono font-bold text-sm"
@@ -37,7 +39,7 @@ export default function App() {
                             className="text-base font-semibold tracking-wide"
                             style={{ color: 'oklch(0.9 0 0)' }}
                         >
-                            Study Calculator
+                            Calculator
                         </h1>
                         <p className="text-xs" style={{ color: 'oklch(0.45 0 0)' }}>
                             Basic arithmetic
@@ -45,17 +47,23 @@ export default function App() {
                     </div>
                 </div>
 
-                <div className="flex items-center gap-2">
-                    <div
-                        className="w-2 h-2 rounded-full animate-pulse"
-                        style={{
-                            background: 'oklch(0.85 0.22 142)',
-                            boxShadow: '0 0 6px oklch(0.85 0.22 142)',
-                        }}
-                    />
-                    <span className="text-xs font-mono" style={{ color: 'oklch(0.45 0 0)' }}>
-                        ON CHAIN
-                    </span>
+                {/* Right: On-chain indicator + Hamburger */}
+                <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                        <div
+                            className="w-2 h-2 rounded-full animate-pulse"
+                            style={{
+                                background: 'oklch(0.85 0.22 142)',
+                                boxShadow: '0 0 6px oklch(0.85 0.22 142)',
+                            }}
+                        />
+                        <span className="text-xs font-mono" style={{ color: 'oklch(0.45 0 0)' }}>
+                            ON CHAIN
+                        </span>
+                    </div>
+
+                    {/* Hamburger Menu */}
+                    <HamburgerMenu />
                 </div>
             </header>
 

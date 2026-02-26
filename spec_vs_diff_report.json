@@ -1,15 +1,37 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T02:41:36.354Z",
-  "summary": "The diff fully implements REQ-4. The header in App.tsx displays 'Study Calculator', the browser tab title in index.html reads 'Study Calculator', and no other conflicting app name instances are visible. All three acceptance criteria are satisfied.",
+  "generatedAt": "2026-02-26T02:52:48.213Z",
+  "summary": "The diff fully implements REQ-1. A new HamburgerMenu component was added in frontend/src/components/HamburgerMenu.tsx and integrated into the App.tsx header on the right side. It is styled with the neon-green dark theme, toggles a slide-in dropdown panel, supports closing via button click, and includes placeholder items (Calculator, History, About). No constraints were violated.",
   "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.98,
+  "hallucinated_features": [
+    {
+      "description": "An 'About' menu item was added to the navigation panel alongside the requested 'Calculator' and 'History' placeholders.",
+      "reason": "The build request only mentions 'Calculator' and 'History' as example placeholder items. 'About' was not requested.",
+      "evidence": [
+        "frontend/src/components/HamburgerMenu.tsx"
+      ]
+    },
+    {
+      "description": "Escape key dismissal of the menu panel.",
+      "reason": "The build request specifies closing via clicking the button again or a close control, but does not mention keyboard Escape dismissal.",
+      "evidence": [
+        "frontend/src/components/HamburgerMenu.tsx"
+      ]
+    },
+    {
+      "description": "Outside-click dismissal of the menu panel.",
+      "reason": "The build request specifies closing via clicking the button again or a close control. Outside-click dismissal was not explicitly requested.",
+      "evidence": [
+        "frontend/src/components/HamburgerMenu.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.85,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/index.html",
     "frontend/src/App.tsx",
+    "frontend/src/components/HamburgerMenu.tsx",
     "project_state.json"
   ]
 }

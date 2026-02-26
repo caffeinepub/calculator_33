@@ -1,11 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Rename the application to "Study Calculator" across all visible branding locations.
+**Goal:** Add a hamburger menu button to the right side of the app header that toggles a slide-in menu panel.
 
 **Planned changes:**
-- Update the header title in App.tsx to display "Study Calculator"
-- Update the browser tab title in index.html to "Study Calculator"
-- Remove any other remaining instances of the old app name in the UI
+- Add a ☰ hamburger icon button on the right side of the header in App.tsx, styled to match the existing dark/neon-green theme
+- Implement toggle logic so clicking the button opens and closes a menu panel (side drawer or dropdown)
+- Menu panel includes placeholder navigation items such as "Calculator" and "History"
 
-**User-visible outcome:** The app header and browser tab both show "Study Calculator" as the application name.
+**User-visible outcome:** Users see a hamburger menu button on the right of the header; clicking it opens a themed menu panel with placeholder items, and clicking again closes it.

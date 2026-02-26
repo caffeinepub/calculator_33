@@ -1,32 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
-  "summary": "A Study Calculator app with numeric keypad, arithmetic operations, calculation history, and a sleek dark-themed UI.",
+  "projectStateVersion": 3,
+  "summary": "Study Calculator app — a calculator with study-focused features. User requested a hamburger menu (☰) button on the right-hand side.",
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
   "existing_features": [
     {
-      "id": "feature-build-a-calculator-ui-with-a-numeric-keypad-0-9-decimal-point-operators-equals-button-clear-c-and-backspace-display-the-current-expression-and-result-in-a-prominent-display-area-show-a-scrollable-list-of-recent-calculation-history-below-the-calculator",
-      "title": "Build a calculator UI with a numeric keypad (0–9), decimal point, operators (+, −, ×, ÷), equals button, clear (C), and backspace. Display the current expression and result in a prominent display area. Show a scrollable list of recent calculation history below the calculator.",
+      "id": "feature-add-a-hamburger-menu-icon-button-on-the-right-hand-side-of-the-app-header-in-app-tsx-the-button-should-be-visually-styled-to-match-the-existing-dark-theme-neon-green-accent-dark-background-clicking-the-button-should-toggle-a-slide-in-or-dropdown-side-menu-panel-the-menu-panel-can-initially-be-empty-or-contain-placeholder-navigation-items-e-g-calculator-history-as-a-foundation-for-future-expansion",
+      "title": "Add a hamburger menu (☰) icon button on the right-hand side of the app header in App.tsx. The button should be visually styled to match the existing dark theme (neon-green accent, dark background). Clicking the button should toggle a slide-in or dropdown side menu panel. The menu panel can initially be empty or contain placeholder navigation items (e.g., 'Calculator', 'History') as a foundation for future expansion.",
       "reqIds": [
-        "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-apply-a-sleek-dark-themed-visual-design-with-high-contrast-neon-green-accents-for-operator-buttons-soft-white-for-digit-buttons-and-a-dark-charcoal-background-use-a-monospace-font-for-the-display-and-rounded-button-shapes-the-layout-should-feel-like-a-premium-hardware-calculator",
-      "title": "Apply a sleek dark-themed visual design with high-contrast neon-green accents for operator buttons, soft white for digit buttons, and a dark charcoal background. Use a monospace font for the display and rounded button shapes. The layout should feel like a premium hardware calculator.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-rename-the-application-to-study-calculator-update-the-branded-header-title-in-app-tsx-and-any-other-visible-instances-of-the-app-name-page-title-in-index-html-any-footer-or-metadata-references-to-display-study-calculator",
-      "title": "Rename the application to 'Study Calculator' — update the branded header title in App.tsx and any other visible instances of the app name (page title in index.html, any footer or metadata references) to display 'Study Calculator'.",
-      "reqIds": [
-        "REQ-4"
+        "REQ-1"
       ],
       "version": 1
     }
@@ -34,21 +18,13 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Build a Calculator app",
+      "summary": "Add a hamburger menu (☰) button on the right-hand side of the app",
       "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-2",
-      "summary": "Build a fully functional calculator backend that supports basic arithmetic operations: addition, subtraction, multiplication, and division. Expose functions for performing calculations and maintaining a history of recent calculations (up to 10 entries).",
-      "reqIds": [
-        "REQ-1"
-      ],
       "status": "pending"
     }
   ],
   "gameProjectType": "none",
-  "projectName": "Calculator",
+  "projectName": "Study Calculator",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }
