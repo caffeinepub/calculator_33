@@ -1,0 +1,24 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-rename-the-application-to-study-calculator-update-the-branded-header-title-in-app-tsx-and-any-other-visible-instances-of-the-app-name-page-title-in-index-html-any-footer-or-metadata-references-to-display-study-calculator",
+      "featureTitle": "Rename the application to 'Study Calculator' — update the branded header title in App.tsx and any other visible instances of the app name (page title in index.html, any footer or metadata references) to display 'Study Calculator'.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

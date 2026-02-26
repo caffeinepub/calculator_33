@@ -1,0 +1,11 @@
+{
+  "frontend/src/index.css": "Global styles with dark charcoal OKLCH color system, JetBrains Mono + Inter fonts, neon-green/amber/red calculator token variables, and utility classes for glow effects and button press animations.",
+  "frontend/tailwind.config.js": "Extended Tailwind config with JetBrains Mono font, custom `calc-*` color tokens mapped to OKLCH CSS variables, calculator box-shadow utilities, and slide-up/flash keyframe animations.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations — useGetHistory (query), useAdd, useSubtract, useMultiply, useDivide (mutations) — each invalidating the history cache on success.",
+  "frontend/src/components/CalculatorDisplay.tsx": "Display component showing the current expression (subdued) and result (large neon-green monospace) with scanline overlay, loading dots animation, and error state in red.",
+  "frontend/src/components/CalculatorKeypad.tsx": "4×5 grid keypad with styled digit, operator (neon-green), equals (amber), clear (red), and special buttons; each with press animation and hover glow effects.",
+  "frontend/src/components/CalculatorHistory.tsx": "Scrollable history panel showing up to 10 past calculations fetched from the backend, with click-to-reuse results and empty/loading states.",
+  "frontend/src/components/Calculator.tsx": "Main calculator orchestrator managing all state (display, operand, operator, error), keyboard event listeners, and calling backend mutations for arithmetic operations.",
+  "frontend/src/App.tsx": "Root app layout with dark header showing \"Study Calculator\" branding and on-chain indicator, centered Calculator component, and footer with dynamic year and caffeine.ai attribution link.",
+  "frontend/index.html": "HTML entry point with browser tab title updated to \"Study Calculator\"."
+}

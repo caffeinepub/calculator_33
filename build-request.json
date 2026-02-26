@@ -1,0 +1,38 @@
+{
+  "kind": "build_request",
+  "title": "Rename app to Study Calculator",
+  "projectName": "Study Calculator",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-4",
+      "text": "Rename the application to 'Study Calculator' — update the branded header title in App.tsx and any other visible instances of the app name (page title in index.html, any footer or metadata references) to display 'Study Calculator'.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Study Calculator uska name rakh do"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The header in the app displays 'Study Calculator' as the app name.",
+        "The browser tab title (index.html <title>) reads 'Study Calculator'.",
+        "No other instances of a different app name remain visible in the UI."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not change any calculator functionality, logic, or visual design — only the app name/branding should be updated."
+  ],
+  "nonGoals": [
+    "Changing the calculator UI layout or theme.",
+    "Adding new calculator features or operations.",
+    "Modifying backend logic."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

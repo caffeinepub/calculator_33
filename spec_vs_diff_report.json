@@ -1,0 +1,15 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-26T02:41:36.354Z",
+  "summary": "The diff fully implements REQ-4. The header in App.tsx displays 'Study Calculator', the browser tab title in index.html reads 'Study Calculator', and no other conflicting app name instances are visible. All three acceptance criteria are satisfied.",
+  "missing_requirements": [],
+  "hallucinated_features": [],
+  "confidence": 0.98,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "project_state.json"
+  ]
+}
