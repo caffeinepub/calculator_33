@@ -1,38 +1,38 @@
 {
   "kind": "build_request",
-  "title": "Show full decimal precision for division results",
+  "title": "Remove duplicate equals buttons — keep only one = at right column bottom",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "When a division operation produces a non-terminating or long decimal result (e.g., 10 ÷ 3), display the full precision result up to 10 decimal places (e.g., 3.3333333333) instead of truncating to 2 decimal places.",
+      "text": "In CalculatorKeypad, remove all extra '=' buttons from the keypad layout so that exactly one '=' button exists, positioned at the bottom of the right column.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-1"
         ],
         "quotes": [
-          "10 ÷ 3\n= 3.33   ❌ (truncate)\n= 3.3333333333 ✅"
+          "Extra equals हटाओ",
+          "सिर्फ एक = बटन",
+          "right column bottom में"
         ]
       },
       "acceptanceCriteria": [
-        "10 ÷ 3 displays as 3.3333333333 (10 decimal places) in the calculator result area.",
-        "Division results that are whole numbers (e.g., 10 ÷ 2 = 5) are displayed without unnecessary trailing zeros.",
-        "Division results with fewer than 10 significant decimal digits (e.g., 1 ÷ 4 = 0.25) are displayed exactly without padding zeros.",
-        "The fix applies to both the live preview display and the confirmed result display in CalculatorDisplay.tsx.",
-        "History entries saved to the backend also reflect the full precision value.",
-        "Other operations (addition, subtraction, multiplication, power, square root) are unaffected."
+        "Only one '=' button is visible in the calculator keypad.",
+        "The single '=' button is located at the bottom of the rightmost column.",
+        "No other '=' or equals-equivalent button appears anywhere else in the keypad grid.",
+        "Pressing '=' still correctly evaluates and displays the result."
       ]
     }
   ],
   "constraints": [
-    "Do not alter immutable frontend paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
-    "Do not change the backend data model or Motoko actor signature."
+    "Do not change backend logic or history functionality.",
+    "Do not modify any files listed in frontend.immutablePaths."
   ],
   "nonGoals": [
-    "Adding a user-configurable precision setting.",
-    "Changing the display precision for non-division operations.",
-    "Modifying the backend calculation logic."
+    "Redesigning the overall calculator layout.",
+    "Adding new calculator operations or buttons.",
+    "Changing history or clear-history functionality."
   ],
   "imageRequirements": {
     "required": [],

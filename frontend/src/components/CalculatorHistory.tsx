@@ -1,7 +1,19 @@
 import React from 'react';
-import { Clock } from 'lucide-react';
+import { Clock, Trash2, Loader2 } from 'lucide-react';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import type { HistoryEntry } from '@/hooks/useQueries';
+import { useClearHistory } from '@/hooks/useQueries';
 
 interface CalculatorHistoryProps {
     history: HistoryEntry[];
@@ -21,6 +33,12 @@ function formatTimestamp(ts: number): string {
 }
 
 export function CalculatorHistory({ history, isLoading, onSelectResult }: CalculatorHistoryProps) {
+    const clearHistory = useClearHistory();
+
+    const handleClear = () => {
+        clearHistory.mutate();
+    };
+
     return (
         <div
             className="flex flex-col h-full rounded-xl overflow-hidden"
@@ -46,6 +64,7 @@ export function CalculatorHistory({ history, isLoading, onSelectResult }: Calcul
                         Last 7 days
                     </span>
                 </div>
+
                 {history.length > 0 && (
                     <span
                         className="ml-auto text-xs px-2 py-0.5 rounded-full font-mono"
@@ -57,6 +76,79 @@ export function CalculatorHistory({ history, isLoading, onSelectResult }: Calcul
                     >
                         {history.length}
                     </span>
+                )}
+
+                {/* Clear History Button */}
+                {history.length > 0 && (
+                    <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                            <button
+                                disabled={clearHistory.isPending}
+                                className="flex items-center justify-center w-7 h-7 rounded-lg transition-all duration-150 disabled:opacity-50"
+                                style={{
+                                    background: 'oklch(0.2 0 0)',
+                                    border: '1px solid oklch(0.28 0 0)',
+                                    color: 'oklch(0.55 0.15 25)',
+                                    marginLeft: history.length > 0 ? '0.25rem' : 'auto',
+                                }}
+                                onMouseEnter={(e) => {
+                                    (e.currentTarget as HTMLElement).style.background = 'oklch(0.22 0.04 25)';
+                                    (e.currentTarget as HTMLElement).style.borderColor = 'oklch(0.65 0.2 25 / 0.4)';
+                                    (e.currentTarget as HTMLElement).style.color = 'oklch(0.7 0.2 25)';
+                                }}
+                                onMouseLeave={(e) => {
+                                    (e.currentTarget as HTMLElement).style.background = 'oklch(0.2 0 0)';
+                                    (e.currentTarget as HTMLElement).style.borderColor = 'oklch(0.28 0 0)';
+                                    (e.currentTarget as HTMLElement).style.color = 'oklch(0.55 0.15 25)';
+                                }}
+                                title="Clear history"
+                                aria-label="Clear history"
+                            >
+                                {clearHistory.isPending ? (
+                                    <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                                ) : (
+                                    <Trash2 className="w-3.5 h-3.5" />
+                                )}
+                            </button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent
+                            style={{
+                                background: 'oklch(0.15 0 0)',
+                                border: '1px solid oklch(0.25 0 0)',
+                                color: 'oklch(0.85 0 0)',
+                            }}
+                        >
+                            <AlertDialogHeader>
+                                <AlertDialogTitle style={{ color: 'oklch(0.9 0 0)' }}>
+                                    Clear all history?
+                                </AlertDialogTitle>
+                                <AlertDialogDescription style={{ color: 'oklch(0.5 0 0)' }}>
+                                    This will permanently delete all {history.length} calculation{history.length !== 1 ? 's' : ''} from your history. This action cannot be undone.
+                                </AlertDialogDescription>
+                            </AlertDialogHeader>
+                            <AlertDialogFooter>
+                                <AlertDialogCancel
+                                    style={{
+                                        background: 'oklch(0.2 0 0)',
+                                        border: '1px solid oklch(0.28 0 0)',
+                                        color: 'oklch(0.65 0 0)',
+                                    }}
+                                >
+                                    Cancel
+                                </AlertDialogCancel>
+                                <AlertDialogAction
+                                    onClick={handleClear}
+                                    style={{
+                                        background: 'oklch(0.35 0.12 25)',
+                                        border: '1px solid oklch(0.5 0.18 25 / 0.4)',
+                                        color: 'oklch(0.9 0.1 25)',
+                                    }}
+                                >
+                                    Clear History
+                                </AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
                 )}
             </div>
 

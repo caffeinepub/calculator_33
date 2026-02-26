@@ -1,29 +1,22 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Show full decimal precision for division results",
+  "title": "Remove duplicate equals buttons — keep only one = at right column bottom",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Display division results with up to 10 decimal places precision instead of truncating to 2 decimal places",
+      "summary": "Remove all extra '=' buttons from the keypad layout so that exactly one '=' button exists at the bottom of the right column",
       "acceptanceCriteria": [
-        "10 ÷ 3 displays as 3.3333333333 (10 decimal places) in the calculator result area.",
-        "Division results that are whole numbers (e.g., 10 ÷ 2 = 5) are displayed without unnecessary trailing zeros.",
-        "Division results with fewer than 10 significant decimal digits (e.g., 1 ÷ 4 = 0.25) are displayed exactly without padding zeros.",
-        "The fix applies to both the live preview display and the confirmed result display in CalculatorDisplay.tsx.",
-        "History entries saved to the backend also reflect the full precision value.",
-        "Other operations (addition, subtraction, multiplication, power, square root) are unaffected."
+        "Only one '=' button is visible in the calculator keypad.",
+        "The single '=' button is located at the bottom of the rightmost column.",
+        "No other '=' or equals-equivalent button appears anywhere else in the keypad grid.",
+        "Pressing '=' still correctly evaluates and displays the result."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Calculator.tsx",
+          "path": "frontend/src/components/CalculatorKeypad.tsx",
           "operation": "modify",
-          "description": "Update the division result formatting in the evaluateExpression function to display up to 10 decimal places for division operations. Modify the division case in the switch statement to format results using toFixed(10) and then remove trailing zeros. Ensure whole number results display without decimal points and non-repeating decimals display their exact precision without padding."
-        },
-        {
-          "path": "frontend/src/components/CalculatorDisplay.tsx",
-          "operation": "modify",
-          "description": "Ensure the display component correctly renders the full precision division results passed from Calculator.tsx in both preview and confirmed states. Verify that the result formatting logic preserves the precision from the parent component without applying additional truncation."
+          "description": "Review the current keypad button layout array and remove all duplicate '=' button entries, ensuring exactly one '=' button remains positioned at the bottom of the rightmost column. Verify that the button's onClick handler still correctly triggers calculation evaluation."
         }
       ]
     }

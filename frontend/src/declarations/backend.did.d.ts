@@ -15,6 +15,7 @@ export interface _SERVICE {
     [bigint, bigint],
     { 'result' : bigint, 'expression' : string }
   >,
+  'clearHistory' : ActorMethod<[], undefined>,
   'divide' : ActorMethod<
     [bigint, bigint],
     { 'result' : bigint, 'expression' : string }

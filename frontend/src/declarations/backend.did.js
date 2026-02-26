@@ -14,6 +14,7 @@ export const idlService = IDL.Service({
       [IDL.Record({ 'result' : IDL.Int, 'expression' : IDL.Text })],
       [],
     ),
+  'clearHistory' : IDL.Func([], [], []),
   'divide' : IDL.Func(
       [IDL.Int, IDL.Int],
       [IDL.Record({ 'result' : IDL.Int, 'expression' : IDL.Text })],
@@ -45,6 +46,7 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Record({ 'result' : IDL.Int, 'expression' : IDL.Text })],
         [],
       ),
+    'clearHistory' : IDL.Func([], [], []),
     'divide' : IDL.Func(
         [IDL.Int, IDL.Int],
         [IDL.Record({ 'result' : IDL.Int, 'expression' : IDL.Text })],

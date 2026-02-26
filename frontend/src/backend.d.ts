@@ -12,6 +12,7 @@ export interface backendInterface {
         result: bigint;
         expression: string;
     }>;
+    clearHistory(): Promise<void>;
     divide(x: bigint, y: bigint): Promise<{
         result: bigint;
         expression: string;

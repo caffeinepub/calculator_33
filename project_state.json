@@ -1,32 +1,25 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Calculator app with automatic calculation display. User wants division results to show full decimal precision (e.g., 10 ÷ 3 = 3.3333333333) instead of truncated values (e.g., 3.33).",
-  "architectural_notes": [],
-  "known_issues": [
-    "Division results are being truncated (e.g., 10 ÷ 3 shows 3.33 instead of 3.3333333333)"
+  "summary": "Calculator app with UI fixes — removing extra equals buttons, keeping only one = button at the bottom of the right column.",
+  "architectural_notes": [
+    "= button should appear only once, at the bottom of the right column"
   ],
+  "known_issues": [],
   "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-when-a-division-operation-produces-a-non-terminating-or-long-decimal-result-e-g-10-3-display-the-full-precision-result-up-to-10-decimal-places-e-g-3-3333333333-instead-of-truncating-to-2-decimal-places",
-      "title": "When a division operation produces a non-terminating or long decimal result (e.g., 10 ÷ 3), display the full precision result up to 10 decimal places (e.g., 3.3333333333) instead of truncating to 2 decimal places.",
+      "id": "feature-in-calculatorkeypad-remove-all-extra-buttons-from-the-keypad-layout-so-that-exactly-one-button-exists-positioned-at-the-bottom-of-the-right-column",
+      "title": "In CalculatorKeypad, remove all extra '=' buttons from the keypad layout so that exactly one '=' button exists, positioned at the bottom of the right column.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     }
   ],
-  "new_feature_requests": [
-    {
-      "id": "AR-1",
-      "summary": "Division results should show full decimal precision (e.g., 10 ÷ 3 = 3.3333333333) instead of truncating to fewer decimal places",
-      "reqIds": [],
-      "status": "pending"
-    }
-  ],
+  "new_feature_requests": [],
   "gameProjectType": "none",
-  "projectName": "Show full decimal precision for division results",
+  "projectName": "Remove duplicate equals buttons — keep only one = at right column bottom",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

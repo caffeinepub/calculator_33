@@ -61,6 +61,14 @@ function saveLocalTimestamp(expression: string, result: string) {
     }
 }
 
+function clearLocalTimestamps() {
+    try {
+        localStorage.removeItem(LOCAL_HISTORY_KEY);
+    } catch {
+        // ignore storage errors
+    }
+}
+
 function mergeTimestamps(entries: Array<[string, string]>): HistoryEntry[] {
     const cache = getLocalTimestamps();
     const now = Date.now();
@@ -88,6 +96,25 @@ export function useGetHistory() {
         enabled: !!actor && !isFetching,
         refetchInterval: false,
         retry: false,
+        throwOnError: false,
+    });
+}
+
+export function useClearHistory() {
+    const { actor } = useActor();
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        retry: false,
+        mutationFn: async (): Promise<void> => {
+            if (!actor) throw new Error('Actor not available');
+            await actor.clearHistory();
+            clearLocalTimestamps();
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['history'] }).catch(() => {});
+        },
+        onError: () => {},
         throwOnError: false,
     });
 }

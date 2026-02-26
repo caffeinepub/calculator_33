@@ -1,7 +1,7 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T03:50:24.751Z",
+  "generatedAt": "2026-02-26T04:38:04.603Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
@@ -12,14 +12,13 @@
     "items": [
       {
         "id": "REQ-1",
-        "summary": "When a division operation produces a non-terminating or long decimal result (e.g., 10 ÷ 3), display the full precision result up to 10 decimal places (e.g., 3.3333333333) instead of truncating to 2 decimal places.",
+        "summary": "In CalculatorKeypad, remove all extra '=' buttons from the keypad layout so that exactly one '=' button exists, positioned at the bottom of the right column.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/Calculator.tsx",
-          "frontend/src/components/CalculatorDisplay.tsx"
+          "frontend/src/components/CalculatorKeypad.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/Calculator.tsx"
+          "frontend/src/components/CalculatorKeypad.tsx"
         ]
       }
     ]
@@ -29,7 +28,7 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/Calculator.tsx",
+    "frontend/src/components/CalculatorKeypad.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

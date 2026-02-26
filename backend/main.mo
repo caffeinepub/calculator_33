@@ -4,6 +4,8 @@ import Runtime "mo:core/Runtime";
 import Iter "mo:core/Iter";
 import Time "mo:core/Time";
 
+
+
 actor {
   type HistoryEntry = {
     expression : Text;
@@ -88,5 +90,9 @@ actor {
     filterHistoryByTime().map(
       func(entry) { (entry.expression, entry.result) }
     );
+  };
+
+  public shared ({ caller }) func clearHistory() : async () {
+    calculationHistory := [];
   };
 };

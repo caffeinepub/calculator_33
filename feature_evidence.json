@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-when-a-division-operation-produces-a-non-terminating-or-long-decimal-result-e-g-10-3-display-the-full-precision-result-up-to-10-decimal-places-e-g-3-3333333333-instead-of-truncating-to-2-decimal-places",
-      "featureTitle": "When a division operation produces a non-terminating or long decimal result (e.g., 10 ÷ 3), display the full precision result up to 10 decimal places (e.g., 3.3333333333) instead of truncating to 2 decimal places.",
+      "featureId": "feature-in-calculatorkeypad-remove-all-extra-buttons-from-the-keypad-layout-so-that-exactly-one-button-exists-positioned-at-the-bottom-of-the-right-column",
+      "featureTitle": "In CalculatorKeypad, remove all extra '=' buttons from the keypad layout so that exactly one '=' button exists, positioned at the bottom of the right column.",
       "files": [
-        "frontend/src/components/Calculator.tsx"
+        "frontend/src/components/CalculatorKeypad.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",

@@ -94,6 +94,7 @@ export interface backendInterface {
         result: bigint;
         expression: string;
     }>;
+    clearHistory(): Promise<void>;
     divide(x: bigint, y: bigint): Promise<{
         result: bigint;
         expression: string;
@@ -124,6 +125,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.add(arg0, arg1);
+            return result;
+        }
+    }
+    async clearHistory(): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.clearHistory();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.clearHistory();
             return result;
         }
     }
